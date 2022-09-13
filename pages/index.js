@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Enzo & Teresa</title>
+        <title>Teresa & Enzo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Primer Div */}
@@ -27,8 +27,9 @@ export default function Home() {
         }}
       >
         <div className="flex flex-col items-center justify-center w-full min-h-screen text-center ">
-          <h1 className="text-7xl lg:text-9xl md:text-9xl font-alexBrush text-white">
-            Enzo & Teresa
+        <Image className="w-64 h-64 rounded-full ring-4 ring-gray-300 p-1" width={256} height={256} src="/images/perfil.jpeg" alt="Rounded avatar" />
+          <h1 className="text-7xl lg:text-9xl md:text-9xl font-alexBrush text-white mt-5">
+            Teresa & Enzo 
           </h1>
           <h2 className="text-3xl lg:text-5xl md:text-5xl mt-12 font-montSerrat text-white">
             11 | Marzo | 2023
@@ -63,13 +64,13 @@ export default function Home() {
           </p>
           <div className="flex flex-col justify-center items-center mt-8 lg:mt-24 md:mt-24 sm:mt-20">
             <h1 className="text-4xl lg:text-6xl md:text-5xl sm:text-5xl font-montSerrat text-yellow-500 text-center">
-              Enzo Fuenzalida Quezada
+              Teresa Verdejo Monardez
             </h1>
             <h1 className="text-4xl lg:text-6xl md:text-5xl sm:text-5xl font-montSerrat text-yellow-500 text-center">
               &
             </h1>
             <h1 className="text-4xl lg:text-6xl md:text-5xl sm:text-5xl font-montSerrat text-yellow-500 text-center">
-              Teresa Verdejo Monardez
+              Enzo Fuenzalida Quezada
             </h1>
           </div>
           <p className="text-4xl lg:text-6xl md:text-4xl font-montSerrat mt-8 lg:mt-16 md:mt-28 sm:mt-10 text-slate-600">
@@ -96,10 +97,10 @@ export default function Home() {
           <div className="grid grid-cols-4 w-full h-full lg:w-3/5 lg:h-3/5 md:w-3/5 md:h-3/5 rounded-lg lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 bg-slate-700 bg-opacity-80 justify-center lg:gap-4 md:gap-4 sm:gap-4 gap-4 p-10 border-4 border-slate-700 border-y-yellow-500">
             <div className="grid col-span-4 lg:col-start-2 lg:col-span-2 md:col-span-2 md:col-start-2 mb-10 items-center justify-center">
               <h1 className="text-center text-5xl lg:text-6xl md:text-5xl sm:text-4xl font-alexBrush text-white">
-                Enzo & Teresa
+                Teresa & Enzo 
               </h1>
               <h2 className="grid text-center text-2xl lg:text-3xl md:text-2xl sm:lg:text-2xl font-playFair text-white mt-5">
-                11-Marzo-2023 | 18:30
+                11-Marzo-2023 | 18:00
               </h2>
             </div>
             <div className="grid col-span-4 lg:col-start-1 lg:col-span-2 md:col-start-1 md:col-span-2 lg:pr-5 md:pr-5">
