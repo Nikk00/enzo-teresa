@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import { useState , useEffect, useRef } from 'react';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
-const featuredImages = ['/images/carusel-1.jpeg', '/images/carusel-2.jpeg', '/images/carusel-3.jpeg', '/images/carusel-4.jpeg', '/images/carusel-5.jpeg', '/images/carusel-6.jpeg'];
+const featuredImages = ['/images/carusel-1.jpeg', '/images/carusel-2.jpeg', '/images/carusel-3.jpeg', '/images/carusel-4.jpeg', '/images/carusel-5.jpeg', '/images/carusel-6.jpeg',
+'/images/carusel-7.jpeg','/images/carusel-8.jpeg','/images/carusel-9.jpeg','/images/carusel-10.jpeg','/images/carusel-11.jpeg','/images/carusel-12.jpeg', '/images/carusel-13.jpeg',
+'/images/carusel-13.jpeg','/images/carusel-14.jpeg','/images/carusel-15.jpeg', '/images/carusel-16.jpeg'];
 let count = 0;
 export default function Carousel(){
   const slideRef = useRef(null);
@@ -18,16 +20,15 @@ export default function Carousel(){
     setCurrentIndex(count);
     //slideRef.current.classList.add("fade-anim");
   };
-  const startSlider = () => {
-    setInterval(() => {
-      handleOnNextClick();
-    }, 4000);
-  };
-  const removeAnimation = () => {
+  
+  /* const removeAnimation = () => {
     //slideRef.current.classList.remove("fade-anim");
-  };
+  }; */
   useEffect(() => {
-    startSlider();
+    const startSlider = setInterval(() => {
+        handleOnNextClick();
+      }, 4000);
+      return () => clearInterval(startSlider);
     //slideRef.current.addEventListener("animationend", removeAnimation);
   }, []);
   

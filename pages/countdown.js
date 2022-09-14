@@ -38,19 +38,19 @@ export default function Count(){
     return(
         <div className="grid grid-cols-4 items-center justify-center gap-4">
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-slate-600">{days}</span>
+                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black ">{days}</span>
                 <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Días</span>
               </div>
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-slate-600">{hours}</span>
+                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black ">{hours}</span>
                 <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Horas</span>
               </div>
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-slate-600">{minutes}</span>
+                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black">{minutes}</span>
                 <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Minutos</span>
               </div>
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-slate-600">{seconds}</span>
+                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black">{seconds}</span>
                 <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Segundos</span>
               </div>
         </div>
