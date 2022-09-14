@@ -33,7 +33,7 @@ export default function Carousel(){
   
 return (
     <div className="flex items-center justify-center">
-      <div className="w-full h-full lg:w-1/2 lg:h-1/2 md:w-3/4 md:h-3/4 sm:w-3/4 sm:h-3/4 relative select-none">
+      <div className="w-full h-full lg:w-2/5 lg:h-1/2 md:w-3/4 md:h-3/4 sm:w-3/4 sm:h-3/4 relative select-none">
         <Image src={featuredImages[currentIndex]} className={`rounded-xl`} alt="" width={1800} height={1200}/>
 
         <div className="absolute w-full top-1/2 transform -translate-y-1/2 flex justify-between items-start px-3">

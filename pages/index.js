@@ -2,6 +2,9 @@ import Head from "next/head";
 import Count from "./countdown";
 import Image from "next/image";
 import Carousel from "./carousel";
+import { useEffect, useState } from 'react';
+import {useSound} from 'use-sound';
+import {FaPlayCircle, FaPauseCircle, FaGift} from 'react-icons/fa'
 import {
   BsChevronDoubleDown,
   BsInfoSquareFill,
@@ -10,6 +13,20 @@ import {
 } from "react-icons/bs";
 import { ImManWoman } from "react-icons/im";
 export default function Home() {
+  const soundUrl = '/music/Billy-Ocean -Suddenly.mp3';
+    const [playMusic, setPlayMusic] = useState(false)
+    const [play, { stop }] = useSound(soundUrl);
+
+    const handleClick = () =>{
+      if(playMusic == false){
+          play()
+          setPlayMusic(true)
+      }else{
+          stop()
+          setPlayMusic(false)
+      } 
+    }
+    
   return (
     <div>
       <Head>
@@ -17,6 +34,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* Primer Div */}
+      <div className="flex justify-end z-10 relative place-content-end">
+        <div className="fixed bottom-0 right-0 mr-5 mb-5">
+            <button onClick={handleClick}>
+                {
+                    playMusic ? <FaPauseCircle size={36} /> : <FaPlayCircle size={36}/>
+                }
+            </button>
+        </div>
+      </div>
       <div
         className="relative overflow-hidden bg-no-repeat bg-auto w-full h-full"
         /* className="relative overflow-hidden bg-no-repeat bg-cover lg:aspect-w-8 lg:aspect-h-4 md:aspect-w-6 md:aspect-h-6 sm:aspect-w-1 sm:aspect-h-1" */
@@ -144,18 +170,14 @@ export default function Home() {
         <div className="flex w-full min-h-screen items-center justify-center">
           <div className="grid grid-cols-3">
             <div className="grid col-start-1 col-end-4 items-center text-center">
-              <h1 className="lg:text-6xl md:text-4xl sm:text-2xl text-2xl font-montSerrat text-yellow-500 mb-5">
+              <h1 className="lg:text-6xl md:text-4xl sm:text-2xl text-2xl font-montSerrat font-bold text-yellow-500 mb-5">
                 Nuestras aventuras juntos
               </h1>
             </div>
             <div className="col-start-1 col-end-4">
               <Carousel></Carousel>
             </div>
-            <div className="grid col-start-1 col-end-4">
-              <h1 className="lg:text-2xl md:text-2xl sm:text-xl text-xl font-montSerrat text-yellow-500 text-center mt-5">
-                Somos muy felices juntos🥰, pero con un sobre de 🤑 nos
-                ayudarias para nuestra luna de miel.
-              </h1>
+            <div className="grid col-start-1 col-end-4 items-center text-center">
             </div>
           </div>
         </div>
@@ -247,6 +269,32 @@ export default function Home() {
                 Varones opcional corbata
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+      {/* Sexto Div */}
+      <div
+        className="relative overflow-hidden bg-no-repeat bg-cover"
+        style={{
+          backgroundPosition: "100%",
+          backgroundImage: `url('/images/graniteBackground.jpg')`,
+          backgroundAttachment: "fixed",
+          height: "100%",
+          width: "100%",
+        }}
+      >
+        <div className="flex w-full h-96 items-center justify-center ">
+          <div className="grid grid-cols-1 lg:w-1/2 md:w-3/4 sm:w-full w-full m-5 border-solid border-2 border-slate-900 p-5 rounded-xl">
+          <div className="grid justify-items-center">
+              <FaGift className="text-slate-600" size={36}></FaGift>
+              <h1 className="lg:text-4xl md:text-2xl sm:text-xl text-xl font-montSerrat font-bold text-slate-600 text-center">
+                Regalos
+              </h1>
+              <p className="lg:text-2xl md:text-xl sm:text-md text-md font-montSerrat font-bold text-slate-600 text-center mt-5">
+                Nuestro mejor regalo es su presencia en este día tan especial, pero si desean colaborar con nuestra Luna de Miel
+                nos puede depositar un sobre en el cofre que estará en nuestra boda.
+              </p>
+          </div>
           </div>
         </div>
       </div>
