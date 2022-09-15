@@ -47,10 +47,10 @@ export default function Home() {
         </div>
       </div>
       <div
-        className="relative overflow-hidden bg-no-repeat bg-auto w-full h-full"
+        className="relative overflow-hidden bg-no-repeat bg-auto"
         /* className="relative overflow-hidden bg-no-repeat bg-cover lg:aspect-w-8 lg:aspect-h-4 md:aspect-w-6 md:aspect-h-6 sm:aspect-w-1 sm:aspect-h-1" */
         style={{
-          backgroundPosition: "100%",
+          backgroundPosition: "center",
           backgroundImage: `linear-gradient(rgba(0, 0,0, 0.4), rgba(0, 0,0, 0.4)),url('/images/heart.jpg')`,
           backgroundAttachment: "fixed",
         }}
@@ -110,24 +110,22 @@ export default function Home() {
               Enzo Fuenzalida Quezada
             </h1>
           </div>
-          <p className="text-4xl lg:text-6xl md:text-4xl font-montSerrat mt-8 lg:mt-16 md:mt-28 sm:mt-10 text-black">
+          <p className="text-4xl lg:text-6xl md:text-4xl font-montSerrat mt-8 lg:mt-16 md:mt-28 sm:mt-10 text-slate-600">
             Sólo Faltan:
           </p>
           <div className="mt-1 lg:mt-10 md:mt-10 sm:mt-10 mb-3">
-            <Count></Count>
+            <Count colorNumber="text-slate-600" colorText="text-yellow-500"></Count>
           </div>
         </div>
       </div>
       {/* Termino Div */}
       {/* Tercer Div */}
       <div
-        className="relative overflow-hidden bg-no-repeat bg-cover"
+        className="relative overflow-hidden bg-no-repeat bg-auto"
         style={{
-          backgroundPosition: "100%",
+          backgroundPosition: "center",
           backgroundImage: `linear-gradient(rgba(0, 0,0, 0.4), rgba(0, 0,0, 0.4)),url('/images/couple.jpg')`,
           backgroundAttachment: "fixed",
-          height: "100%",
-          width: "100%",
         }}
       >
         <div className="flex items-center justify-center w-full min-h-screen">
@@ -159,9 +157,11 @@ export default function Home() {
               </p>
             </div>
             <div className="grid col-start-2 col-span-2 mt-10 items-center justify-center">
+              <a href="#form">
               <button className="bg-slate-500 h-12 w-64 border-solid rounded-xl text-white outline outline-offset-1 outline-yellow-500/70 font-bold text-xl">
                 Confirmar Asistencia
               </button>
+              </a>
             </div>
           </div>
         </div>
@@ -194,13 +194,11 @@ export default function Home() {
       </div>
       {/* Quinto Div */}
       <div
-        className="relative overflow-hidden bg-no-repeat bg-cover"
+        className="relative overflow-hidden bg-no-repeat bg-auto"
         style={{
-          backgroundPosition: "100%",
+          backgroundPosition: "center",
           backgroundImage: `linear-gradient(rgba(0, 0,0, 0.4), rgba(0, 0,0, 0.4)),url('/images/people.jpg')`,
           backgroundAttachment: "fixed",
-          height: "100%",
-          width: "100%",
         }}
       >
         <div className="flex w-full min-h-screen justify-center">
@@ -212,7 +210,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-y-3 m-5 place-content-center place-items-center mt-32 lg:mt-0 md:mt-0 sm:mt-0">
             <div className="grid col-start-1 col-span-3 mb-5">
-              <h1 className="text-white text-3xl font-playFair lg:text-4xl md:text-4xl sm:text-3xl ">
+              <h1 className="text-white text-3xl font-playFair lg:text-4xl md:text-4xl sm:text-3xl text-center">
                 Información Importante
               </h1>
             </div>
@@ -322,19 +320,17 @@ export default function Home() {
       </div>
       {/* Septimo Div */}
       <div
-        className="relative overflow-hidden bg-no-repeat bg-cover"
+        className="relative overflow-hidden bg-no-repeat bg-auto"
         style={{
-          backgroundPosition: "100%",
+          backgroundPosition: "center",
           backgroundImage: `linear-gradient(rgba(0, 0,0, 0.4), rgba(0, 0,0, 0.4)),url('/images/wedding.jpg')`,
           backgroundAttachment: "fixed",
-          height: "100%",
-          width: "100%",
         }}
       >
         <div className="flex w-full min-h-screen items-center justify-center text-white">
           <div className="w-full h-full lg:m-10 md:m-10 border-solid border-2 border-slate-900 bg-slate-800 lg:pr-44 lg:pl-44 lg:pt-16 lg:pb-10 md:pr-24 md:pl-24 md:pt-8 md:pb-5 sm:pr-14 sm:pl-14 sm:pt-4 sm:pb-5 p-5 rounded-xl bg-opacity-50">
-            <div className="grid grid-cols-6 lg:gap-3 md:gap-2 sm:gap-1 gap-1">
-              <div className="grid col-start-2 col-span-4 justify-items-center">
+            <div className="grid grid-cols-6 lg:gap-3 md:gap-2 sm:gap-1 gap-1 font-montSerrat">
+              <div className="grid col-start-2 col-span-4 justify-items-center" id="form">
                 <BiCalendarStar size={64}></BiCalendarStar>
                 <h1 className="lg:text-4xl md:text-2xl sm:text-xl text-xl font-montSerrat font-bold text-center text-yellow-500">
                   ¡Confirma tu Asistencia!
@@ -345,22 +341,22 @@ export default function Home() {
               </div>
               <div className="grid lg:col-start-1 lg:col-span-6 md:col-start-1 sm:col-start-1 col-start-1 col-span-6">
                 <label
-                  for="asistir"
-                  class="block mb-2 text-md  text-white font-bold"
+                  htmlFor="asistir"
+                  className="block mb-2 text-md  text-white font-bold"
                 >
                   Hola, ¿Podrás asistir? *
                 </label>
                 <select
                   id="asistir"
-                  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                  <option selected>Si</option>
+                  <option defaultValue={'Si'}>Si</option>
                   <option value="No">No</option>
                 </select>
               </div>
               <div className="grid col-start-1 col-span-6 lg:col-start-1 lg:col-span-2 md:col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
-                  for="first_name"
+                  htmlFor="first_name"
                   className="block mb-2 text-sm font-bold text-white"
                 >
                   Tu Nombre *
@@ -375,22 +371,22 @@ export default function Home() {
               </div>
               <div className="grid col-start-1 col-span-6 lg:col-start-3 lg:col-span-2 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
-                  for="acompañante"
-                  class="block mb-2 text-sm font-bold text-white"
+                  htmlFor="acompañante"
+                  className="block mb-2 text-sm font-bold text-white"
                 >
                   ¿Vas Acompañado?
                 </label>
                 <select
                   id="acompañante"
-                  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                  <option selected>Acompañado</option>
+                  <option defaultValue={'Acompañado'}>Acompañado</option>
                   <option value="Sin Acompañante">Sin Acompañante</option>
                 </select>
               </div>
               <div className="grid lg:col-start-5 lg:col-span-2 col-start-1 col-span-6 md:col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
-                  for="nameAcom"
+                  htmlFor="nameAcom"
                   className="block mb-2 text-sm font-bold text-white"
                 >
                   Nombre de tu Acompañante *
@@ -405,7 +401,7 @@ export default function Home() {
               </div>
               <div className="grid lg:col-start-1 lg:col-span-3 col-start-1 col-span-6 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block mb-2 text-sm font-bold text-white"
                 >
                   Tu Email *
@@ -420,65 +416,65 @@ export default function Home() {
               </div>
               <div className="grid lg:col-start-4 lg:col-span-3 col-start-1 col-span-6 md:col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
-                  for="movilidad"
-                  class="block mb-2 text-sm font-bold text-white"
+                  htmlFor="movilidad"
+                  className="block mb-2 text-sm font-bold text-white"
                 >
                   Pase de Movilidad
                 </label>
                 <select
                   id="movilidad"
-                  class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 >
-                  <option selected>Tengo mi pase OK</option>
+                  <option defaultValue={'Tengo mi pase OK'}>Tengo mi pase OK</option>
                   <option value="noPase">No tengo mi pase</option>
                 </select>
               </div>
               <div className="grid lg:col-start-1 lg:col-span-3 col-start-1 col-span-6 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center h-20">
-                <h3 class="mb-0 font-bold text-white">Algun@ es:</h3>
-                <ul class="items-center w-full text-sm font-medium text-gray-900 rounded-lg border border-gray-200 sm:flex flex">
-                  <li class="w-full border-gray-200">
-                    <div class="flex items-center pl-3">
+                <h3 className="mb-0 font-bold text-white">Algun@ es:</h3>
+                <ul className="items-center w-full text-sm font-medium text-gray-900 rounded-lg border border-gray-200 sm:flex flex">
+                  <li className="w-full border-gray-200">
+                    <div className="flex items-center pl-3">
                       <input
                         id="Vegan"
                         type="checkbox"
                         value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
                       />
                       <label
-                        for="Vegan"
-                        class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                        htmlFor="Vegan"
+                        className="py-3 ml-2 w-full text-xs font-medium text-white"
                       >
                         Vegan@
                       </label>
                     </div>
                   </li>
-                  <li class="w-full border-gray-200">
-                    <div class="flex items-center pl-3">
+                  <li className="w-full border-gray-200">
+                    <div className="flex items-center pl-3">
                       <input
                         id="Vegetarian"
                         type="checkbox"
                         value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
                       />
                       <label
-                        for="Vegetarian"
-                        class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                        htmlFor="Vegetarian"
+                        className="py-3 ml-2 w-full text-xs font-medium text-white"
                       >
                         Vegetarian@
                       </label>
                     </div>
                   </li>
-                  <li class="w-full border-gray-200">
-                    <div class="flex items-center pl-3">
+                  <li className="w-full border-gray-200">
+                    <div className="flex items-center pl-3">
                       <input
                         id="Embarazada"
                         type="checkbox"
                         value=""
-                        class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
                       />
                       <label
-                        for="Embarazada"
-                        class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                        htmlFor="Embarazada"
+                        className="py-3 ml-2 w-full text-xs font-medium text-white"
                       >
                         Embarazada
                       </label>
@@ -489,7 +485,7 @@ export default function Home() {
               <div className="grid lg:col-start-4 lg:col-span-3 col-start-1 col-span-6 md:col-start-1 md:col-span-6 sm:col-start-1 sm:col-span-6 justify-items-center h-20 items-end">
                 <button
                   type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 items-center w-full h-14"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 items-center w-full h-14 lg:w-full md:w-3/4 sm:w-full"
                 >
                   Enviar
                 </button>
@@ -502,7 +498,7 @@ export default function Home() {
                 </h1>
               </div>
             </div>
-            <Count></Count>
+            <Count colorNumber="text-white" colorText="text-yellow-500"></Count>
             <h1 className="text-4xl lg:text-6xl md:text-6xl sm:text-4xl font-alexBrush text-white mt-10 text-center">
               Teresa & Enzo
             </h1>

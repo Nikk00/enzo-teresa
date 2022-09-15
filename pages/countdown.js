@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Count(){
+export default function Count(prop){
 
   const [partyTime, setPartyTime] = useState(false);
   const [days, setDays] = useState(0);
@@ -38,20 +38,20 @@ export default function Count(){
     return(
         <div className="grid grid-cols-4 items-center justify-center gap-4">
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black ">{days}</span>
-                <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Días</span>
+                <span className={`lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat ${prop.colorNumber}`}>{days}</span>
+                <span className={`lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat ${prop.colorText}`}>Días</span>
               </div>
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black ">{hours}</span>
-                <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Horas</span>
+                <span className={`lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat ${prop.colorNumber}`}>{hours}</span>
+                <span className={`lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat ${prop.colorText}`}>Horas</span>
               </div>
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black">{minutes}</span>
-                <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Minutos</span>
+                <span className={`lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat ${prop.colorNumber}`}>{minutes}</span>
+                <span className={`lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat ${prop.colorText}`}>Minutos</span>
               </div>
               <div className="grid">
-                <span className="lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat text-black">{seconds}</span>
-                <span className="lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat text-yellow-500">Segundos</span>
+                <span className={`lg:text-6xl md:text-4xl sm:text-4xl text-4xl text-center font-montSerrat ${prop.colorNumber}`}>{seconds}</span>
+                <span className={`lg:text-xl md:text-xl sm:text-lg text-md text-center font-montSerrat ${prop.colorText}`}>Segundos</span>
               </div>
         </div>
     )
