@@ -9,7 +9,6 @@ export default function Carousel(){
   const slideRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleOnNextClick = () => {
-    console.log(featuredImages.length)
     count = (count + 1) % featuredImages.length;
     setCurrentIndex(count);
     //slideRef.current.classList.add("fade-anim");

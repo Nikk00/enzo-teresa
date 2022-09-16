@@ -2,8 +2,10 @@ import Head from "next/head";
 import Count from "./countdown";
 import Image from "next/image";
 import Carousel from "./carousel";
+import emailjs from "@emailjs/browser"
 import { useEffect, useState } from "react";
-import { useSound } from "use-sound";
+import ReactHowler from 'react-howler'
+import swal from 'sweetalert'
 import { FaPlayCircle, FaPauseCircle, FaGift } from "react-icons/fa";
 import {
   BsChevronDoubleDown,
@@ -14,20 +16,58 @@ import {
 import { ImManWoman } from "react-icons/im";
 import { BiCalendarStar, BiCalendarCheck } from "react-icons/bi";
 export default function Home() {
-  const soundUrl = "/music/Billy-Ocean -Suddenly.mp3";
-  const [playMusic, setPlayMusic] = useState(false);
-  const [play, { stop }] = useSound(soundUrl);
-
-  const handleClick = () => {
-    if (playMusic == false) {
-      play();
-      setPlayMusic(true);
-    } else {
-      stop();
-      setPlayMusic(false);
+  const soundUrl = "/music/Billy-Ocean-Suddenly.mp3";
+  const [playMusic, setPlayMusic] = useState(true)
+  const handleClick = () =>{
+    if(playMusic == true){
+        setPlayMusic(false)
+    }else{
+        setPlayMusic(true)
+    }
+  }
+  const [newForm, setNewForm] = useState({
+    "Pase_movilidad": "",
+    Email: "",
+    "Nombre_invitado": "",
+    invitado: "",
+    "Nombre_Apellido": "",
+    asistir: "",
+  });
+  const handleChange = (e) =>
+  setNewForm({ ...newForm, [e.target.name]: e.target.value });
+  const [formOpcion, setFormOpcion] = useState()
+  const handleChangeOpcion = (e) =>
+  setFormOpcion({ ...formOpcion, [e.target.name]: e.target.value });
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    var cont = 0
+    console.log(newForm)
+    Object.entries(newForm).forEach(([key, value]) => {
+      if (value == "") {
+        swal("Porfavor ingrese o escoja un opción en: "+key, "You clicked the button!", "error")
+        return;
+      }else{
+        cont++
+      }
+    });
+    if(!validEmail.test(newForm.Email)){
+      swal("Ingrese un correo electronico valido.", "You clicked the button!", "error")
+      return;
+    }
+    const form = {...newForm, ...formOpcion}
+    if(cont == 6){
+      emailjs.send("service_734qugq", "template_m7zfixj", form, "U9dAW5Kj0tENr4Api")
+      .then(function(response) {
+        swal("Se envío exitosamente su confirmación!", "You clicked the button!", "success")
+        console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+        swal("Hubo un error al enviar su confirmación, intente en un rato mas porfavor.", "You clicked the button!", "error")
+        console.log('FAILED...', error);
+      }); 
     }
   };
-
   return (
     <div>
       <Head>
@@ -37,12 +77,11 @@ export default function Home() {
       {/* Primer Div */}
       <div className="flex justify-end z-10 relative place-content-end">
         <div className="fixed bottom-0 right-0 mr-5 mb-5">
+        <ReactHowler src={soundUrl} playing={playMusic} />
           <button onClick={handleClick}>
-            {playMusic ? (
-              <FaPauseCircle size={36} />
-            ) : (
-              <FaPlayCircle size={36} />
-            )}
+          {
+            playMusic ? <FaPauseCircle size={36} /> : <FaPlayCircle size={36}/>
+          }
           </button>
         </div>
       </div>
@@ -223,9 +262,9 @@ export default function Home() {
                 Información del Matrimonio
               </h1>
               <p className="text-white text-center font-montSerratRegular text-sm lg:text-lg md:text-md sm:text-sm">
-                Nuestra ceremonia de union se realizara el dia 11 de Marzo a las
-                18:00 horas en Andes Nomdas Desert Camp & Lodge que se encuentra
-                hubicada en Ayllu Cucuter sitio 52.
+                Nuestra ceremonia de unión se realizará el día 11 de Marzo a las
+                18:00 horas en Andes Nomads Desert Camp & Lodge que se encuentra
+                ubicada en Ayllú de Cucuter sitio 52.
               </p>
               <p className="text-white text-center font-montSerrat text-sm lg:text-lg md:text-md sm:text-sm">
                 ¡Los esperamos para celebrar!
@@ -254,7 +293,7 @@ export default function Home() {
             <div className="grid col-start-2 bg-slate-800 bg-opacity-80 rounded-lg w-3/4 p-5 justify-items-center h-64">
               <BsWhatsapp className="text-white mb-2" size={36}></BsWhatsapp>
               <h1 className="text-white text-center font-montSerrat text-lg font-bold">
-                Contactanos si tienes problemas
+                Contáctanos si tienes problemas
               </h1>
               <p className="text-white text-center font-montSerrat text-sm lg:text-lg md:text-md sm:text-sm">
                 Si tienes dudas, necesitas información adicional o preguntar
@@ -349,8 +388,11 @@ export default function Home() {
                 <select
                   id="asistir"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  name="asistir"
+                  onChange={handleChange}
                 >
-                  <option defaultValue={'Si'}>Si</option>
+                  <option >Escoge una opcción</option>
+                  <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
               </div>
@@ -366,6 +408,8 @@ export default function Home() {
                   id="first_name"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="Nombre y Apellido"
+                  name="Nombre_Apellido"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -374,13 +418,16 @@ export default function Home() {
                   htmlFor="acompañante"
                   className="block mb-2 text-sm font-bold text-white"
                 >
-                  ¿Vas Acompañado?
+                  ¿Vas Acompañado? *
                 </label>
                 <select
                   id="acompañante"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  name="invitado"
+                  onChange={handleChange}
                 >
-                  <option defaultValue={'Acompañado'}>Acompañado</option>
+                  <option >Escoge una opcción</option>
+                  <option value='Acompañado'>Acompañado</option>
                   <option value="Sin Acompañante">Sin Acompañante</option>
                 </select>
               </div>
@@ -395,7 +442,9 @@ export default function Home() {
                   type="text"
                   id="nameAcom"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder="Nombre"
+                  placeholder="Nombre Acompañante o Nadie"
+                  name="Nombre_invitado"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -410,7 +459,9 @@ export default function Home() {
                   type="email"
                   id="email"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  placeholder="Correo Electronico"
+                  placeholder="ejemplo@gmail.com"
+                  name="Email"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -419,14 +470,17 @@ export default function Home() {
                   htmlFor="movilidad"
                   className="block mb-2 text-sm font-bold text-white"
                 >
-                  Pase de Movilidad
+                  Pase de Movilidad *
                 </label>
                 <select
                   id="movilidad"
                   className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  name="Pase_movilidad"
+                  onChange={handleChange}
                 >
-                  <option defaultValue={'Tengo mi pase OK'}>Tengo mi pase OK</option>
-                  <option value="noPase">No tengo mi pase</option>
+                  <option >Escoge una opcción</option>
+                  <option value='Tengo mi pase OK'>Tengo mi pase OK</option>
+                  <option value="No tengo mi pase">No tengo mi pase</option>
                 </select>
               </div>
               <div className="grid lg:col-start-1 lg:col-span-3 col-start-1 col-span-6 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center h-20">
@@ -437,8 +491,10 @@ export default function Home() {
                       <input
                         id="Vegan"
                         type="checkbox"
-                        value=""
+                        value="vegano"
                         className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                        name="vegano"
+                        onChange={handleChangeOpcion}
                       />
                       <label
                         htmlFor="Vegan"
@@ -453,8 +509,10 @@ export default function Home() {
                       <input
                         id="Vegetarian"
                         type="checkbox"
-                        value=""
+                        value="vegetariano"
                         className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                        name="vegetariano"
+                        onChange={handleChangeOpcion}
                       />
                       <label
                         htmlFor="Vegetarian"
@@ -469,8 +527,10 @@ export default function Home() {
                       <input
                         id="Embarazada"
                         type="checkbox"
-                        value=""
+                        value="embarazada"
                         className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                        name="embarazada"
+                        onChange={handleChangeOpcion}
                       />
                       <label
                         htmlFor="Embarazada"
@@ -486,6 +546,7 @@ export default function Home() {
                 <button
                   type="button"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 items-center w-full h-14 lg:w-full md:w-3/4 sm:w-full"
+                  onClick={handleSubmit}
                 >
                   Enviar
                 </button>
