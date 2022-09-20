@@ -6,7 +6,6 @@ import emailjs from "@emailjs/browser"
 import { useEffect, useState } from "react";
 import ReactHowler from 'react-howler'
 import swal from 'sweetalert'
-import checkInvitados from './listInvitados'
 import { FaPlayCircle, FaPauseCircle, FaGift } from "react-icons/fa";
 import {
   BsChevronDoubleDown,
@@ -25,6 +24,15 @@ export default function Home() {
     }else{
         setPlayMusic(true)
     }
+  }
+  const listInv = ["GINA FUENZALIDA", "FERNANDO CÁCERES", "MARIA JOSÉ CÁCERES", "SEGISFREDO VERDEJO", "CARMEN ALVAREZ", 
+  "MILDRED VERDEJO", "OCTAVIO VERDEJO", "JEANNETTE DOMÍNGUEZ", "ELISA QUEZADA", "YELITZA FUENZALIDA", "LUIS VERDEJO",
+  "PATRICIA MOLINA", "PATRICIA MORALES", "CARLOS CORREA", "PÍA CORREA", "VIVIANA PINO", "JOSÉ OLIVARES", "RICARDO LUZA",
+  "FABIOLA RODRIGUEZ", "FLAVIO NARRIA", "FANNY PIZARRO", "MARIANO GARCÍA", "MARITZA PIZARRO", " PETER ROSENTHAL",
+  "DARWIN PIZARRO", "MIRNA RIOS", "CARLOS LUZA", "SLVIA LUNA", "GERARDO CAROCA", "GABRIELA VIVANCO", "NICOLÁS LUZA"]
+
+  const checkInvitados = (name) =>{
+      return listInv.includes(name.toUpperCase())
   }
   const [newForm, setNewForm] = useState({
     "Pase_movilidad": "",
