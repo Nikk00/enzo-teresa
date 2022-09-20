@@ -34,6 +34,26 @@ export default function Home() {
   const checkInvitados = (name) =>{
       return listInv.includes(name.toUpperCase())
   }
+  useEffect(() =>{
+    const callback = function (entries) {
+      entries.forEach((entry) => {
+        console.log(entry);
+    
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fadeIn");
+        } else {
+          entry.target.classList.remove("animate-fadeIn");
+        }
+      });
+    };
+    const observer = new IntersectionObserver(callback);
+    const targets = document.querySelectorAll(".js-show-on-scroll");
+    targets.forEach(function (target) {
+      target.classList.add("opacity-0");
+      observer.observe(target);
+    });
+  })
+
   const [newForm, setNewForm] = useState({
     "Pase_movilidad": "",
     Email: "",
@@ -53,17 +73,17 @@ export default function Home() {
     console.log(newForm)
     Object.entries(newForm).forEach(([key, value]) => {
       if (value == "") {
-        swal("Porfavor ingrese o escoja un opción en: "+key, "You clicked the button!", "error")
+        swal("Por favor ingrese o escoja una opción en: "+key, "Haga clic en el botón para salir.", "error")
         return;
       }else{
         cont++
       }
     });
     if(!validEmail.test(newForm.Email)){
-      swal("Ingrese un correo electronico valido.", "You clicked the button!", "error")
+      swal("Ingrese un correo electrónico válido.", "Haga clic en el botón para salir.", "error")
       return;
     }else if(checkInvitados(newForm.Nombre_Apellido) != true ){
-      swal("Ingrese su Nombre y apellido con tilde sí es que lo requiere.", "You clicked the button!", "error")
+      swal("Ingrese su Nombre y apellido con tilde sí es que lo requiere.", "Haga clic en el botón para salir.", "error")
       return;
     }else{
       cont++
@@ -72,10 +92,10 @@ export default function Home() {
     if(cont == 5){
       emailjs.send("service_734qugq", "template_m7zfixj", form, "U9dAW5Kj0tENr4Api")
       .then(function(response) {
-        swal("Se envío exitosamente su confirmación!", "You clicked the button!", "success")
+        swal("Se envío exitosamente su confirmación!", "Haga clic en el botón para salir.", "success")
         console.log('SUCCESS!', response.status, response.text);
       }, function(error) {
-        swal("Hubo un error al enviar su confirmación, intente en un rato mas porfavor.", "You clicked the button!", "error")
+        swal("Hubo un error al enviar su confirmación, intente en un rato más, por favor.", "Haga clic en el botón para salir.", "error")
         console.log('FAILED...', error);
       }); 
     }
@@ -106,7 +126,7 @@ export default function Home() {
           backgroundAttachment: "fixed",
         }}
       >
-        <div className="flex flex-col items-center justify-center w-full min-h-screen text-center ">
+        <div className="flex flex-col items-center justify-center w-full min-h-screen text-center js-show-on-scroll">
           <picture>
             <img
               className="w-64 h-64 rounded-full ring-4 ring-gray-300"
@@ -125,7 +145,7 @@ export default function Home() {
           <div className="">
             <BsChevronDoubleDown
               size={54}
-              className={"text-white mt-10"}
+              className={"text-white mt-10 animate-bounce"}
             ></BsChevronDoubleDown>
           </div>
         </div>
@@ -180,8 +200,8 @@ export default function Home() {
         }}
       >
         <div className="flex items-center justify-center w-full min-h-screen">
-          <div className="grid grid-cols-4 w-full h-full lg:w-3/5 lg:h-3/5 md:w-3/5 md:h-3/5 rounded-lg lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 bg-slate-700 bg-opacity-80 justify-center lg:gap-4 md:gap-4 sm:gap-4 gap-4 p-10 border-4 border-slate-700 border-y-yellow-500 m-5">
-            <div className="grid col-span-4 lg:col-start-2 lg:col-span-2 md:col-span-2 md:col-start-2 mb-10 items-center justify-center">
+          <div className="grid grid-cols-4 w-full h-full lg:w-3/5 lg:h-3/5 md:w-3/5 md:h-3/5 rounded-lg lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 bg-slate-700 bg-opacity-80 justify-center lg:gap-4 md:gap-4 sm:gap-4 gap-4 p-10 border-4 border-slate-700 border-y-yellow-500 m-5 js-show-on-scroll">
+            <div className="grid col-span-4 lg:col-start-2 lg:col-span-2 md:col-span-2 md:col-start-2 mb-10 items-center justify-center js-show-on-scroll">
               <h1 className="text-center text-5xl lg:text-6xl md:text-5xl sm:text-4xl font-alexBrush text-white">
                 Teresa & Enzo
               </h1>
@@ -189,25 +209,25 @@ export default function Home() {
                 11-Marzo-2023 | 18:00
               </h2>
             </div>
-            <div className="grid col-span-4 lg:col-start-1 lg:col-span-2 md:col-start-1 md:col-span-2 lg:pr-5 md:pr-5">
+            <div className="grid col-span-4 lg:col-start-1 lg:col-span-2 md:col-start-1 md:col-span-2 lg:pr-5 md:pr-5 js-show-on-scroll">
               <h1 className="text-center text-2xl font-montSerrat text-yellow-500 font-bold">
                 CEREMONIA
               </h1>
               <p className="text-center lg:text-lg md:text-lg sm:text-md text-md font-montSerrat text-white">
-                Ayllu Cucuter sitio 52. ANDES NOMADS DESERT CAMP & LODGE Lugar
+                Ayllú de Cucuter sitio 52. ANDES NOMADS DESERT CAMP & LODGE Lugar
                 San Pedro de Atacama.
               </p>
             </div>
-            <div className="grid col-span-4 lg:col-start-3 lg:col-span-2 md:col-start-3 md:col-span-2 sm:col-start-3 sm:col-span-2 lg:pl-5 md:pl-5">
+            <div className="grid col-span-4 lg:col-start-3 lg:col-span-2 md:col-start-3 md:col-span-2 sm:col-start-3 sm:col-span-2 lg:pl-5 md:pl-5 js-show-on-scroll">
               <h1 className="text-center text-2xl font-montSerrat text-yellow-500 font-bold">
                 RECEPCIÓN
               </h1>
               <p className="text-center lg:text-lg md:text-lg sm:text-md text-md font-montSerrat text-white">
-                Ayllu de Cucuter sitio 52. ANDES NOMADS DESERT CAMP & LODGE Lugar
+                Ayllú de Cucuter sitio 52. ANDES NOMADS DESERT CAMP & LODGE Lugar
                 San Pedro de Atacama.
               </p>
             </div>
-            <div className="grid col-start-2 col-span-2 mt-10 items-center justify-center">
+            <div className="grid col-start-2 col-span-2 mt-10 items-center justify-center js-show-on-scroll">
               <a href="#form">
               <button className="bg-slate-500 h-12 w-64 border-solid rounded-xl text-white outline outline-offset-1 outline-yellow-500/70 font-bold text-xl">
                 Confirmar Asistencia
@@ -265,7 +285,7 @@ export default function Home() {
                 Información Importante
               </h1>
             </div>
-            <div className="grid col-start-2 lg:col-start-1 md:col-start-1 sm:col-start-2 bg-slate-800 bg-opacity-80 rounded-lg p-5 w-3/4 justify-items-center h-64">
+            <div className="grid col-start-2 lg:col-start-1 md:col-start-1 sm:col-start-2 bg-slate-800 bg-opacity-80 rounded-lg p-5 w-3/4 justify-items-center h-64 js-show-on-scroll">
               <BsInfoSquareFill
                 className="text-white mb-2"
                 size={36}
@@ -274,7 +294,7 @@ export default function Home() {
                 Información del Matrimonio
               </h1>
               <p className="text-white text-center font-montSerratRegular text-sm lg:text-lg md:text-md sm:text-sm">
-                Nuestra ceremonia de unión se realizará el día 11 de Marzo a las
+                Nuestra ceremonia de unión se realizará el día 11 de marzo a las
                 18:00 horas en Andes Nomads Desert Camp & Lodge que se encuentra
                 ubicada en Ayllú de Cucuter sitio 52.
               </p>
@@ -302,7 +322,7 @@ export default function Home() {
               </a>
             </div> */}
             {/* <div className="grid col-start-2 lg:col-start-1 md:col-start-1 sm:col-start-2 bg-slate-800 bg-opacity-80 rounded-lg w-3/4 p-5 justify-items-center h-64"> */}
-            <div className="grid col-start-2 bg-slate-800 bg-opacity-80 rounded-lg w-3/4 p-5 justify-items-center h-64">
+            <div className="grid col-start-2 bg-slate-800 bg-opacity-80 rounded-lg w-3/4 p-5 justify-items-center h-64 js-show-on-scroll">
               <BsWhatsapp className="text-white mb-2" size={36}></BsWhatsapp>
               <h1 className="text-white text-center font-montSerrat text-lg font-bold">
                 Contáctanos si tienes problemas
@@ -324,7 +344,7 @@ export default function Home() {
                 </button>
               </a>
             </div>
-            <div className="grid lg:col-start-1 lg:col-span-2 md:col-start-1 md:col-span-2 col-start-2 bg-slate-800 bg-opacity-80 rounded-lg lg:w-2/5 md:w-2/5 sm:w-3/4 w-3/4 p-5 justify-items-center h-64">
+            <div className="grid lg:col-start-1 lg:col-span-2 md:col-start-1 md:col-span-2 col-start-2 bg-slate-800 bg-opacity-80 rounded-lg lg:w-2/5 md:w-2/5 sm:w-3/4 w-3/4 p-5 justify-items-center h-64 js-show-on-scroll">
               <ImManWoman className="text-white mb-2" size={36}></ImManWoman>
               <h1 className="text-white text-center font-montSerrat text-lg font-bold">
                 Código de vestimenta:
@@ -387,7 +407,7 @@ export default function Home() {
                   ¡Confirma tu Asistencia!
                 </h1>
                 <p className="lg:text-lg md:text-md sm:text-sm text-sm font-montSerrat font-bold  text-center mt-5">
-                  Hasta el día 25 de  Octubre de 2022
+                  Hasta el día 25 de octubre de 2022
                 </p>
               </div>
               <div className="grid lg:col-start-1 lg:col-span-6 md:col-start-1 sm:col-start-1 col-start-1 col-span-6">
@@ -403,7 +423,7 @@ export default function Home() {
                   name="asistir"
                   onChange={handleChange}
                 >
-                  <option >Escoge una opcción</option>
+                  <option >Escoge una opción</option>
                   <option value="Si">Si</option>
                   <option value="No">No</option>
                 </select>
@@ -413,7 +433,7 @@ export default function Home() {
                   htmlFor="first_name"
                   className="block mb-2 text-sm font-bold text-white"
                 >
-                  Tu Nombre *
+                  Tu Nombre y Apellido*
                 </label>
                 <input
                   type="text"
@@ -492,7 +512,7 @@ export default function Home() {
                   name="Pase_movilidad"
                   onChange={handleChange}
                 >
-                  <option >Escoge una opcción</option>
+                  <option >Escoge una opción</option>
                   <option value='Tengo mi pase OK'>Tengo mi pase OK</option>
                   <option value="No tengo mi pase">No tengo mi pase</option>
                 </select>

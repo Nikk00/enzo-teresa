@@ -13,6 +13,15 @@ module.exports = {
         playFair: ['Playfair Display', 'serif'],
         montSerrat: ['Montserrat', 'sans-serif'],
       },
+      animation: {
+        fadeIn: 'fadeIn 3s ease-in forwards',
+        },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+                 },
+               },
     },
   },
   plugins: [
