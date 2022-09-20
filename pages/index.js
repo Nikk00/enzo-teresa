@@ -6,6 +6,7 @@ import emailjs from "@emailjs/browser"
 import { useEffect, useState } from "react";
 import ReactHowler from 'react-howler'
 import swal from 'sweetalert'
+import checkInvitados from './listInvitados'
 import { FaPlayCircle, FaPauseCircle, FaGift } from "react-icons/fa";
 import {
   BsChevronDoubleDown,
@@ -28,8 +29,6 @@ export default function Home() {
   const [newForm, setNewForm] = useState({
     "Pase_movilidad": "",
     Email: "",
-    "Nombre_invitado": "",
-    invitado: "",
     "Nombre_Apellido": "",
     asistir: "",
   });
@@ -55,9 +54,14 @@ export default function Home() {
     if(!validEmail.test(newForm.Email)){
       swal("Ingrese un correo electronico valido.", "You clicked the button!", "error")
       return;
+    }else if(checkInvitados(newForm.Nombre_Apellido) != true ){
+      swal("Ingrese su Nombre y apellido con tilde sí es que lo requiere.", "You clicked the button!", "error")
+      return;
+    }else{
+      cont++
     }
     const form = {...newForm, ...formOpcion}
-    if(cont == 6){
+    if(cont == 5){
       emailjs.send("service_734qugq", "template_m7zfixj", form, "U9dAW5Kj0tENr4Api")
       .then(function(response) {
         swal("Se envío exitosamente su confirmación!", "You clicked the button!", "success")
@@ -191,7 +195,7 @@ export default function Home() {
                 RECEPCIÓN
               </h1>
               <p className="text-center lg:text-lg md:text-lg sm:text-md text-md font-montSerrat text-white">
-                Ayllu Cucuter sitio 52. ANDES NOMADS DESERT CAMP & LODGE Lugar
+                Ayllu de Cucuter sitio 52. ANDES NOMADS DESERT CAMP & LODGE Lugar
                 San Pedro de Atacama.
               </p>
             </div>
@@ -375,7 +379,7 @@ export default function Home() {
                   ¡Confirma tu Asistencia!
                 </h1>
                 <p className="lg:text-lg md:text-md sm:text-sm text-sm font-montSerrat font-bold  text-center mt-5">
-                  Dia 11 de Marzo de 2023 | 18:00 Hrs
+                  Hasta el día 25 de  Octubre de 2022
                 </p>
               </div>
               <div className="grid lg:col-start-1 lg:col-span-6 md:col-start-1 sm:col-start-1 col-start-1 col-span-6">
@@ -413,7 +417,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <div className="grid col-start-1 col-span-6 lg:col-start-3 lg:col-span-2 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
+{/*               <div className="grid col-start-1 col-span-6 lg:col-start-3 lg:col-span-2 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
                   htmlFor="acompañante"
                   className="block mb-2 text-sm font-bold text-white"
@@ -447,8 +451,9 @@ export default function Home() {
                   onChange={handleChange}
                   required
                 />
-              </div>
-              <div className="grid lg:col-start-1 lg:col-span-3 col-start-1 col-span-6 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
+              </div> */}
+              {/* <div className="grid lg:col-start-1 lg:col-span-3 col-start-1 col-span-6 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center"> */}
+              <div className="grid col-start-1 col-span-6 lg:col-start-3 lg:col-span-2 md:col-start-4 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-bold text-white"
@@ -465,7 +470,8 @@ export default function Home() {
                   required
                 />
               </div>
-              <div className="grid lg:col-start-4 lg:col-span-3 col-start-1 col-span-6 md:col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
+              {/* <div className="grid lg:col-start-4 lg:col-span-3 col-start-1 col-span-6 md:col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center"> */}
+              <div className="grid lg:col-start-5 lg:col-span-2 col-start-1 col-span-6 md:col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-6 lg:justify-items-center md:justify-items-center">
                 <label
                   htmlFor="movilidad"
                   className="block mb-2 text-sm font-bold text-white"
